@@ -14,14 +14,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</resultMap>
 		
 	<select id="listByUser" resultMap="articleMapper">
-		SELECT id,title,channel_id,category_id , created,status 
+		SELECT id,title,channel_id,category_id , created,status,picture
 		  FROM cms_article
 		  WHERE user_id = #{value} AND deleted=0
 		  ORDER BY id DESC  
 	</select>
 	
 	<select id="list" resultMap="articleMapper">
-		SELECT id,title,channel_id,category_id ,user_id, created,status,complainCnt
+		SELECT id,title,channel_id,category_id ,user_id, created,status,hot,picture,complainCnt
 		  FROM cms_article
 		  WHERE status = #{value} AND deleted=0
 		  ORDER BY id DESC  
