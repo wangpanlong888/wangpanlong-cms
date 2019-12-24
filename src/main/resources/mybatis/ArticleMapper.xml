@@ -21,7 +21,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="list" resultMap="articleMapper">
-		SELECT id,title,channel_id,category_id ,user_id, created,status 
+		SELECT id,title,channel_id,category_id ,user_id, created,status,complainCnt
 		  FROM cms_article
 		  WHERE status = #{value} AND deleted=0
 		  ORDER BY id DESC  

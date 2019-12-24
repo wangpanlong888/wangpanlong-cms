@@ -28,7 +28,7 @@
     
     <div>
     	<ul class="nav">
-    		<li class="nav-item nav-link"> <img width="35px" height="35px" src="/images/guest.jpg"> </li>
+    		<li class="nav-item nav-link"> <img width="35px" height="35px" src="/images/tx.jpg"> </li>
     	
     		<li class="nav-item nav-link">a</li>
     		<li class="nav-item nav-link">c</li>
@@ -37,8 +37,8 @@
     </div>
   </div>
 </nav><!--  头结束 -->
-	
-	<div class="container row">
+	<div class="container-fluid">
+	<div class="row">
 		<div class="col-md-2" style="margin-top:20px ; border-right:solid 2px"> 
 			<!-- 左侧的菜单 -->
 			<ul class="nav flex-column mymenuselected">
@@ -61,6 +61,7 @@
 		
 		    
 		</div>	
+	</div>
 	</div>
 	
 <!-- 尾开始 -->

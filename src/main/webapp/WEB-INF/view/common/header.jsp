@@ -19,7 +19,7 @@
     
     <div>
     	<ul class="nav">
-    		<li class="nav-item nav-link"> <img width="35px" height="35px" src="/images/guest.jpg"> </li>
+    		<li class="nav-item nav-link"> <img width="35px" height="35px" src="/images/tx.jpg"> </li>
     		
     		<c:if test="${sessionScope.loing_session_key!=null}">
     		<li class="nav-item nav-link">${sessionScope.loing_session_key.username}</li>
@@ -28,7 +28,7 @@
 		          	用户信息
 		        </a>
 		            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-			          <a class="dropdown-item" href="/user/home">进入个人中心</a>
+			          <a class="dropdown-item" href="${sessionScope.loing_session_key.role==1?'/admin/index':'/user/home'}">进入个人中心</a>
 			          <a class="dropdown-item" href="#">个人设置</a>
 			          <div class="dropdown-divider"></div>
 			          <a class="dropdown-item" href="/user/logout">登出</a>

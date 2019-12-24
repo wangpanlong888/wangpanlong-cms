@@ -108,6 +108,7 @@ public class ArticleServiceImpl implements ArticleService {
 	public int addComment(Comment comment) {
 		// TODO Auto-generated method stub
 		int result =  articleMapper.addComment(comment);
+		System.out.println(result);
 		 //文章评论数目自增
 		if(result>0)
 			articleMapper.increaseCommentCnt(comment.getArticleId());

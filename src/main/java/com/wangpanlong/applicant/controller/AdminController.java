@@ -59,7 +59,6 @@ public class AdminController {
 	@RequestMapping("setArticeStatus")
 	@ResponseBody
 	public CmsMessage  setArticeStatus(Integer id,int status) {
-		
 		/**
 		 * 数据合法性校验 
 		 */
