@@ -54,6 +54,9 @@
 				  <li class="nav-item">
 				    <a class="nav-link" href="#" onclick="showWork($(this),'/admin/user')" >用户管理管理</a>
 				  </li>
+				  <li class="nav-item">
+				    <a class="nav-link" href="#" onclick="showWork($(this),'/admin/articles')" >投诉管理</a>
+				  </li>
 				</ul>	
 		</div>
 		

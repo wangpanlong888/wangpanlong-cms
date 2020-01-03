@@ -154,4 +154,16 @@ public class ArticleServiceImpl implements ArticleService {
 		return new PageInfo<Complain>(articleMapper.getComplains(articleId));
 	}
 
+	@Override
+	public List<Complain> complainList() {
+		
+		return articleMapper.complainList();
+	}
+
+	@Override
+	public PageInfo<Article> lists(int complainType, int page) {
+		PageHelper.startPage(page,CmsContant.PAGE_SIZE);
+		return new PageInfo<Article>(articleMapper.lists(complainType));
+	}
+
 }

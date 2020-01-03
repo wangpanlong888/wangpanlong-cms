@@ -28,7 +28,9 @@
 			发表时间：<fmt:formatDate value="${article.created}" pattern="yyyy-MM-dd"/> 
 			</h5>
 			
-			<a href="/article/complain?articleId=${article.id}">投诉</a>
+			<c:if test="${sessionScope.loing_session_key.username != article.user.username}">
+				<a href="/article/complain?articleId=${article.id}">投诉</a>
+			</c:if>
 			
 		</div>
 		<div style="margin-top:30px">

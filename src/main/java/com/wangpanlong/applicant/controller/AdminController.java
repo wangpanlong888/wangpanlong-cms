@@ -1,5 +1,7 @@
 package com.wangpanlong.applicant.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,7 @@ import com.github.pagehelper.PageInfo;
 import com.wangpanlong.applicant.common.CmsError;
 import com.wangpanlong.applicant.common.CmsMessage;
 import com.wangpanlong.applicant.entity.Article;
+import com.wangpanlong.applicant.entity.Complain;
 import com.wangpanlong.applicant.service.ArticleService;
 
 @RequestMapping("admin")
@@ -103,5 +106,24 @@ public class AdminController {
 		return "admin/article/list";
 		
 	}
+	@RequestMapping("articles")
+	public String articles(HttpServletRequest request, @RequestParam(defaultValue= "0") int complainType ,
+			@RequestParam(defaultValue= "1") int page) {
+		PageInfo<Article> articlePages =  articleService.lists(complainType ,page);
+		request.setAttribute("status", complainType);
+		request.setAttribute("articlePages", articlePages);
+		return "admin/complainArticle/complain";
+		
+	}
+	
+	/*@RequestMapping("complainArticle")
+	public String complainArticle(HttpServletRequest request,@RequestParam(defaultValue="1")int page){
+		
+		List<Complain> list = articleService.complainList();
+		
+		request.setAttribute("list", list);
+		
+		return "admin/complainArticle/complain";
+	}*/
 	
 }

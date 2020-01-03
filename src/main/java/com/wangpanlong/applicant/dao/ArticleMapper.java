@@ -84,4 +84,9 @@ public interface ArticleMapper {
 
 	List<Complain> getComplains(int articleId);
 
+	@Select("select * from cms_complain")
+	List<Complain> complainList();
+
+	List<Article> lists(int complainType);
+
 }

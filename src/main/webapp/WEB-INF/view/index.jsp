@@ -172,7 +172,7 @@
 				
 				<div class="card">
 					  <div class="card-header">
-					    最新文章
+					    被投诉文章
 					  </div>
 					  <div class="card-body">
 					     <ol>

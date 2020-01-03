@@ -26,6 +26,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		  WHERE status = #{value} AND deleted=0
 		  ORDER BY id DESC  
 	</select>
+	<select id="lists" resultMap="articleMapper">
+		SELECT id,title,channel_id,category_id ,user_id, created,status,hot,picture,complainCnt
+		  FROM cms_article
+		  WHERE deleted=0 AND complainCnt > 0 and created
+		  ORDER BY complainCnt DESC
+	</select>
 	
 	<!-- 获取热门文章 -->
 	<select id="hostList" resultMap="articleMapper">
@@ -48,12 +54,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </select>
     
     <!-- 最新文章 -->
-	<select id="lastList" resultMap="articleMapper">
+	<!-- <select id="lastList" resultMap="articleMapper">
 		SELECT id,title,channel_id,category_id ,user_id, created,picture
 		  FROM cms_article
 		  WHERE status = 1 AND deleted=0
 		         AND hot = 1 
 		  ORDER BY id DESC 
+		  LIMIT #{value} 
+    </select> -->
+    <!-- 被投诉文章 -->
+    <select id="lastList" resultMap="articleMapper">
+		select * from cms_article where complainCnt > 0
+		  ORDER BY complainCnt DESC 
 		  LIMIT #{value} 
     </select>
 	
@@ -85,5 +97,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<select id="getComplains" resultMap="ComplainMapper">
 		SELECT * FROM cms_complain where article_id=#{value}
+			ORDER BY created DESC
 	</select>
 </mapper>

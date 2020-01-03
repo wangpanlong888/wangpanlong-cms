@@ -34,10 +34,12 @@
 		   <label >投诉类型</label>
 		    <form:select path="complainType" >
 		    	<option value="0">请选择</option>
-		    	<option value="1">政治敏感</option>
-		    	<option value="2">反社会</option>
-		    	<option value="3">涉毒</option>
-		    	<option value="4">涉黄 </option>
+		    	<option value="1">涉及黄色</option>
+		    	<option value="2">涉及暴力</option>
+		    	<option value="3">涉及违宗教政策</option>
+		    	<option value="4">涉及国家安全</option>
+		    	<option value="4">抄袭内容</option>
+		    	<option value="4">其他</option>
 		    </form:select>
 		     <form:errors path="complainType" cssStyle="color:red"></form:errors>
 		 </div>
