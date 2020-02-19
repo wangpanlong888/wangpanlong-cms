@@ -87,6 +87,9 @@
 				    <a id="postLink" class="nav-link" href="#" onclick="showWork($(this),'/user/postArticle')">发表文章</a>
 				  </li>
 				  <li class="nav-item">
+				    <a id="postLink" class="nav-link" href="#" onclick="showWork($(this),'/user/favorite')">我的收藏夹</a>
+				  </li>
+				  <li class="nav-item">
 				    <a class="nav-link" href="#" onclick="showWork($(this),'/user/comments')" >我的评论</a>
 				  </li>
 				  <li class="nav-item">

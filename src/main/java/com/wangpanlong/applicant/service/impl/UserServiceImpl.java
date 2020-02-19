@@ -1,5 +1,7 @@
 package com.wangpanlong.applicant.service.impl;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.wangpanlong.applicant.common.CmsUtils;
 import com.wangpanlong.applicant.dao.UserMapper;
+import com.wangpanlong.applicant.entity.Favorite;
 import com.wangpanlong.applicant.entity.User;
 import com.wangpanlong.applicant.service.UserService;
 
@@ -35,6 +38,12 @@ public class UserServiceImpl implements UserService{
 		user.setPassword(CmsUtils.encry(user.getPassword(), user.getUsername()));
 		User loginUser = userMapper.findByPwd(user);
 		return loginUser;
+	}
+
+	@Override
+	public List<Favorite> favoriteList() {
+		
+		return userMapper.favoriteList();
 	}
 	
 }

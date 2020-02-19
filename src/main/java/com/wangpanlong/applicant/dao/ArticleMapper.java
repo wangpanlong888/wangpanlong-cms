@@ -2,6 +2,7 @@ package com.wangpanlong.applicant.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.ResultType;
@@ -88,5 +89,18 @@ public interface ArticleMapper {
 	List<Complain> complainList();
 
 	List<Article> lists(int complainType);
+
+	@Select("select * from cms_article where status=#{i}")
+	List<Article> findAllArticlesWithStatus(int i);
+
+	@Update("UPDATE cms_article SET hits =#{hits} WHERE id=#{id}")
+	int updaHits(Article article);
+
+	@Insert("INSERT INTO cms_article(title,content,picture,channel_id,category_id,user_id,hits,hot,STATUS,deleted,created,updated,commentCnt,articleType)"
+			+ "VALUES(#{title},#{content},#{picture},#{channelId},#{categoryId},#{userId },0,0,0,0,now(),now(),0,#{articleType})")
+	int adds(Article article);
+
+	@Delete("delete from cms_favorite where id=#{id}")
+	int deletes(int id);
 
 }

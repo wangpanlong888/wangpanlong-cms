@@ -1,10 +1,13 @@
 package com.wangpanlong.applicant.dao;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 
+import com.wangpanlong.applicant.entity.Favorite;
 import com.wangpanlong.applicant.entity.User;
 
 public interface UserMapper {
@@ -22,5 +25,8 @@ public interface UserMapper {
 			+ "role FROM cms_user WHERE username=#{username}  AND password = #{password} "
 			+ " LIMIT 1")
 	User findByPwd(User user);
+
+	@Select("select * from cms_favorite")
+	List<Favorite> favoriteList();
 
 }

@@ -3,6 +3,7 @@ package com.wangpanlong.applicant.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
 import com.github.pagehelper.PageHelper;
@@ -26,6 +27,9 @@ public class ArticleServiceImpl implements ArticleService {
 	
 	@Autowired
 	SlideMapper slideMapper;
+	
+//	@Autowired
+//	KafkaTemplate<String, String> kafkaTemplate;
 
 	@Override
 	public int delete(int id) {
@@ -47,6 +51,9 @@ public class ArticleServiceImpl implements ArticleService {
 
 	@Override
 	public Article getById(int id) {
+//		kafka生产者 把id发送
+//		kafkaTemplate.send("articles", "hits="+String.valueOf(id));
+		
 		return articleMapper.findById(id);
 	}
 
@@ -164,6 +171,23 @@ public class ArticleServiceImpl implements ArticleService {
 	public PageInfo<Article> lists(int complainType, int page) {
 		PageHelper.startPage(page,CmsContant.PAGE_SIZE);
 		return new PageInfo<Article>(articleMapper.lists(complainType));
+	}
+
+	@Override
+	public int updaHits(Article article) {
+		
+		return articleMapper.updaHits(article);
+	}
+
+	@Override
+	public int adds(Article article) {
+		System.err.println("11111"+article);
+		return articleMapper.adds(article);
+	}
+
+	@Override
+	public int deletes(int id) {
+		return articleMapper.deletes(id);	
 	}
 
 }

@@ -11,10 +11,26 @@
 	xmlns:aop="http://www.springframework.org/schema/aop"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:task="http://www.springframework.org/schema/task"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
-		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd">
+
+	<!-- 加载es.xml配置 -->
+	<import resource="classpath:es.xml"/>
+	
+	<!-- 加载redis.xml配置 -->
+	<import resource="classpath:redis.xml"/>
+	
+	<!-- 加载kafka消费者的配置consumer.xml -->
+	<import resource="classpath:consumer.xml"/>
+	
+	<import resource="classpath:producer.xml"/>
+	
+	<!-- spring整合线程池 -->
+	<task:executor id="executor" pool-size="10-1000" queue-capacity="10" keep-alive="10" rejection-policy="CALLER_RUNS"/>
 
 	<!-- 1、注解扫描器 -->
 	<!-- todo -->

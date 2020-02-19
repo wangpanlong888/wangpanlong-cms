@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,6 +23,8 @@ public class IndexController {
 	@Autowired
 	ArticleService articleService;
 	
+	@Autowired
+	RedisTemplate redisTemplate;
 	
 	@RequestMapping(value={"index","/"})
 	public String index(HttpServletRequest request,@RequestParam(defaultValue="1")int page) throws InterruptedException{
@@ -44,8 +47,20 @@ public class IndexController {
 		
 		Thread t3 = new Thread(){
 			public void run() {
-				List<Article> lastArticles = articleService.lastList();
-				request.setAttribute("lastArticles", lastArticles);
+				//获取最新文章 
+				List<Article> redisArticle = redisTemplate.opsForList().range("new_article", 0, -1);
+				if(redisArticle==null||redisArticle.size()==0) {
+					//如果为空
+					System.out.println("从mysql中查询了数据");
+					List<Article> lastArticles= articleService.lastList();
+					
+					redisTemplate.opsForList().leftPushAll("new_article", lastArticles.toArray());
+					//返回给前台
+					request.setAttribute("lastArticles", lastArticles);
+				}else {
+					System.out.println("从redis中查询了数据");
+					request.setAttribute("lastArticles", redisArticle);
+				}
 			};
 		};
 		

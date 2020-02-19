@@ -58,4 +58,10 @@ public interface ArticleService {
 
 	PageInfo<Article> lists(int complainType, int page);
 
+	int updaHits(Article article);
+
+	int adds(Article article);
+
+	int deletes(int id);
+
 }

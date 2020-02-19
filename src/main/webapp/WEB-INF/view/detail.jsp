@@ -26,11 +26,16 @@
 			栏目：${article.channel.name}  &nbsp;&nbsp;&nbsp;
 			分类：${article.category.name}&nbsp;&nbsp;&nbsp;
 			发表时间：<fmt:formatDate value="${article.created}" pattern="yyyy-MM-dd"/> 
+			&nbsp;&nbsp;&nbsp;
+			访问数量：${article.hits }
 			</h5>
 			
 			<c:if test="${sessionScope.loing_session_key.username != article.user.username}">
 				<a href="/article/complain?articleId=${article.id}">投诉</a>
 			</c:if>
+			&nbsp;&nbsp;&nbsp;
+			<%-- <a href="/article/favorite?articleId=${article.id}">收藏</a> --%>
+			<input type="button" class="btn btn-primary" onclick="addfavorite()" value="收藏">
 			
 		</div>
 		<div style="margin-top:30px">
@@ -89,6 +94,13 @@
 				},
 				"json") 
 		}
+		
+		function addfavorite(){
+			
+			alert("收藏成功")
+			
+		}
+		
 	</script>
 
 </body>

@@ -28,6 +28,7 @@ import com.wangpanlong.applicant.common.CmsContant;
 import com.wangpanlong.applicant.entity.Article;
 import com.wangpanlong.applicant.entity.Category;
 import com.wangpanlong.applicant.entity.Channel;
+import com.wangpanlong.applicant.entity.Favorite;
 import com.wangpanlong.applicant.entity.User;
 import com.wangpanlong.applicant.service.ArticleService;
 import com.wangpanlong.applicant.service.UserService;
@@ -168,6 +169,16 @@ public class UserController {
 		return  result > 0;
 	}
 	
+	@RequestMapping("deletefavorite")
+	@ResponseBody
+	public boolean deleteFavorite(Integer id){
+		
+		int result = articleService.deletes(id);
+		
+		return result>0;
+		
+	}
+	
 	@RequestMapping("articles")
 	public String articles(HttpServletRequest request,@RequestParam(defaultValue="1") int page) {
 		
@@ -178,6 +189,18 @@ public class UserController {
 		request.setAttribute("articlePage", articlePage);
 		
 		return "user/article/list";
+	}
+	
+	@RequestMapping("favorite")
+	public String favorite(HttpServletRequest request){
+		
+		
+		List<Favorite> favoriteList = userService.favoriteList();
+		
+		request.setAttribute("favoriteList", favoriteList);
+		
+		return "user/favorite/list";
+		
 	}
 	
 	@RequestMapping("comments")
